@@ -7,6 +7,7 @@ import static java.time.LocalDateTime.now;
 
 @Entity
 public class Musica {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,19 +15,23 @@ public class Musica {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    private Integer numeroDeOuvintes;
-
-    @Column(nullable = false)
-    private Integer quantidadeLikes;
-
     private LocalDateTime criadoEm = now();
 
     private LocalDateTime atualiazadoEm = now();
 
+    @Version
+    private int versao;
+
+    @OneToOne(mappedBy = "musica", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private QuantidadeOuvintesMusica numeroDeOuvintes;
+
+    @OneToOne(mappedBy = "musica", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private QuantidadeLikesMusica quantidadeLikes;
 
     public Musica(String nome) {
         this.nome = nome;
+        this.numeroDeOuvintes = new QuantidadeOuvintesMusica(this);
+        this.quantidadeLikes = new QuantidadeLikesMusica(this);
     }
 
     /**
@@ -36,13 +41,12 @@ public class Musica {
     public Musica() {
     }
 
-
     public void aumentarOuvinte() {
-        this.numeroDeOuvintes++;
+        this.numeroDeOuvintes.incrementa();
     }
 
     public void aumentarLikes() {
-        this.quantidadeLikes++;
+        this.quantidadeLikes.incrementa();
     }
 }
 
