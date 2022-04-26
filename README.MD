@@ -1,10 +1,7 @@
-# Nossos Dezer
+# Nosso Deezer
 
-Este projeto servira de base para atividades do treinamento de CRUD e Atualizações Concorrentes utilizando a stack Java 11, Spring Boot, Bean Validation, JPA/Hibernate
+API REST para um player de música.
 
-Para utilizar este projeto você precisara seguir os seguintes passos:
-1. Instalar ou ter instalado o Docker e Docker Compose em sua maquina;
-2. Baixar ou clonar este projeto em sua maquina;
-3. Utilizar o terminal na pasta central do projeto e executar o comando:
-   1. executar ``` docker-compose up -d``` para subir o container do banco de dados Postgres
-4. Seguir a descrição da atividade que estiver desenvolvendo.
+* Treino: `CRUD e Atualizações Concorrentes com JPA/Hibernate`
+* Seção: `Evoluindo o Dominio para Lidar com Atualizações concorrentes de entidades utilizando Lock Otimista`
+* Atividade: `Evoluindo o dominio do Nosso Deezer para suportar a atualizações de Like e contabilização de ouvinte na Musica`
